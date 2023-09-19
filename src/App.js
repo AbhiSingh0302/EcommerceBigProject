@@ -1,13 +1,11 @@
 import { Button, Navbar, Container, Nav, Row, Col } from "react-bootstrap";
-import image1 from './assets/Album 1.png';
-import image2 from './assets/Album 2.png';
-import image3 from './assets/Album 3.png';
-import image4 from './assets/Album 4.png';
 import merch1 from './assets/Shirt.png';
 import merch2 from './assets/Cofee.png';
 import ylogo from './assets/6260efc8fc9a9002669d2f4ad9956cc0.jpg';
 import slogo from './assets/Spotify Logo.png';
 import flogo from './assets/Facebook Logo.png';
+import { useState } from "react";
+import Cart from "./Cart/Cart";
 
 const productsArr = [
   {
@@ -33,8 +31,12 @@ const productsArr = [
 ]
 
 function App() {
+  const [cartIsShown,setCartIsShown] = useState(false);
+  const showCart = () => setCartIsShown(!cartIsShown);
+
   return (
     <>
+    {cartIsShown && <Cart/>}
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container className="justify-content-center">
           <Nav>
@@ -42,7 +44,7 @@ function App() {
             <Nav.Link href="#features" className="text-white">Store</Nav.Link>
             <Nav.Link href="#pricing" className="text-white">About</Nav.Link>
           </Nav>
-          <Button variant="outline-info" style={{ position: 'absolute', right: '1rem' }}>cart</Button>
+          <Button variant="outline-info" style={{ position: 'absolute', right: '1rem' }} onClick={showCart}>cart</Button>
         </Container>
       </Navbar>
       <Container fluid className="mt-5 text-center" style={{ paddingTop: '1rem', paddingBottom: '4rem', backgroundColor: '#777' }}>
@@ -54,33 +56,33 @@ function App() {
       <Container className="w-50">
         <Row className="justify-content-center">
           <Col>
-            <h3 className="text-center">Album 1</h3>
-            <img src={image1} alt="music-1" style={{ width: '80%', marginLeft: '10%' }} />
+            <h3 className="text-center">{productsArr[0].title}</h3>
+            <img src={productsArr[0].imageUrl} alt="music-1" style={{ width: '80%', marginLeft: '10%' }} />
             <div className="my-4">
-              <span>$12.99</span><Button style={{ float: "right" }}>ADD TO CART</Button>
+              <span>${productsArr[0].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
             </div>
           </Col>
           <Col>
-            <h3 className="text-center">Album 2</h3>
-            <img src={image2} alt="music-2" style={{ width: '80%', marginLeft: '10%' }} />
+            <h3 className="text-center">{productsArr[1].title}</h3>
+            <img src={productsArr[1].imageUrl} alt="music-2" style={{ width: '80%', marginLeft: '10%' }} />
             <div className="my-4">
-              <span>$14.99</span><Button style={{ float: "right" }}>ADD TO CART</Button>
+              <span>${productsArr[1].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
             </div>
           </Col>
         </Row>
         <Row className="justify-content-center my-5">
           <Col>
-            <h3 className="text-center">Album 3</h3>
-            <img src={image3} alt="music-3" style={{ width: '80%', marginLeft: '10%' }} />
+            <h3 className="text-center">{productsArr[2].title}</h3>
+            <img src={productsArr[2].imageUrl} alt="music-3" style={{ width: '80%', marginLeft: '10%' }} />
             <div className="my-4">
-              <span>$9.99</span><Button style={{ float: "right" }}>ADD TO CART</Button>
+              <span>${productsArr[2].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
             </div>
           </Col>
           <Col>
-            <h3 className="text-center">Album 4</h3>
-            <img src={image4} alt="music-4" style={{ width: '80%', marginLeft: '10%' }} />
+            <h3 className="text-center">{productsArr[3].title}</h3>
+            <img src={productsArr[3].imageUrl} alt="music-4" style={{ width: '80%', marginLeft: '10%' }} />
             <div className="my-4">
-              <span>$19.99</span><Button style={{ float: "right" }}>ADD TO CART</Button>
+              <span>${productsArr[3].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
             </div>
           </Col>
         </Row>

@@ -1,0 +1,28 @@
+.cart{
+    position: fixed;
+    right: 0;
+    background-color: white;
+    color: black;
+    z-index: 20;
+    height: 80vh;
+    width: 40vw;
+    border: 2px solid black;
+    text-align: center;
+    padding: 1.5rem 0.5rem;
+}
+
+.item-list{
+    font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
