@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 import classes from './Cart.module.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { cartContext } from '../stores/context';
 
 const cartElements = [
     {
@@ -24,6 +25,8 @@ const cartElements = [
 ]
 
 const Cart = props => {
+    const ctx = useContext(cartContext);
+    console.log("ctx items: ",ctx.items)
     const [items, setItems] = useState(cartElements);
 
     const removeItem = e => {

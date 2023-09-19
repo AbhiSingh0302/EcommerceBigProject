@@ -1,33 +1,53 @@
-import { Button, Navbar, Container, Nav, Row, Col } from "react-bootstrap";
 import merch1 from './assets/Shirt.png';
 import merch2 from './assets/Cofee.png';
-import ylogo from './assets/6260efc8fc9a9002669d2f4ad9956cc0.jpg';
-import slogo from './assets/Spotify Logo.png';
-import flogo from './assets/Facebook Logo.png';
+
 import { useState } from "react";
 import Cart from "./Cart/Cart";
+import Header from "./components/Header";
+import Products from "./components/Products";
+import Footer from "./components/Footer";
+import { ContextProvider } from './stores/context';
 
 const productsArr = [
   {
+    id: '1a',
     title: 'Colors',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
   },
   {
+    id: '2a',
     title: 'Black and white Colors',
     price: 50,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
   },
   {
+    id: '3a',
     title: 'Yellow and Black Colors',
     price: 70,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
   },
   {
+    id: '4a',
     title: 'Blue Color',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
   }
+]
+
+const merchArr = [
+  {
+    id: '1b',
+    title: 'T-Shirt',
+    price: 19.99,
+    imageUrl: merch1
+  },
+  {
+    id: '2b',
+    title: 'Coffee Cup',
+    price: 6.99,
+    imageUrl: merch2
+  },
 ]
 
 function App() {
@@ -35,95 +55,12 @@ function App() {
   const showCart = () => setCartIsShown(!cartIsShown);
 
   return (
-    <>
+    <ContextProvider>
     {cartIsShown && <Cart/>}
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
-        <Container className="justify-content-center">
-          <Nav>
-            <Nav.Link href="#home" className="text-white">Home</Nav.Link>
-            <Nav.Link href="#features" className="text-white">Store</Nav.Link>
-            <Nav.Link href="#pricing" className="text-white">About</Nav.Link>
-          </Nav>
-          <Button variant="outline-info" style={{ position: 'absolute', right: '1rem' }} onClick={showCart}>cart</Button>
-        </Container>
-      </Navbar>
-      <Container fluid className="mt-5 text-center" style={{ paddingTop: '1rem', paddingBottom: '4rem', backgroundColor: '#777' }}>
-        <h1 className="text-white" style={{ fontSize: '5rem' }}>The Generics</h1>
-      </Container>
-      <Container className="text-center py-5">
-        <h2>Music</h2>
-      </Container>
-      <Container className="w-50">
-        <Row className="justify-content-center">
-          <Col>
-            <h3 className="text-center">{productsArr[0].title}</h3>
-            <img src={productsArr[0].imageUrl} alt="music-1" style={{ width: '80%', marginLeft: '10%' }} />
-            <div className="my-4">
-              <span>${productsArr[0].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
-            </div>
-          </Col>
-          <Col>
-            <h3 className="text-center">{productsArr[1].title}</h3>
-            <img src={productsArr[1].imageUrl} alt="music-2" style={{ width: '80%', marginLeft: '10%' }} />
-            <div className="my-4">
-              <span>${productsArr[1].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
-            </div>
-          </Col>
-        </Row>
-        <Row className="justify-content-center my-5">
-          <Col>
-            <h3 className="text-center">{productsArr[2].title}</h3>
-            <img src={productsArr[2].imageUrl} alt="music-3" style={{ width: '80%', marginLeft: '10%' }} />
-            <div className="my-4">
-              <span>${productsArr[2].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
-            </div>
-          </Col>
-          <Col>
-            <h3 className="text-center">{productsArr[3].title}</h3>
-            <img src={productsArr[3].imageUrl} alt="music-4" style={{ width: '80%', marginLeft: '10%' }} />
-            <div className="my-4">
-              <span>${productsArr[3].price}</span><Button style={{ float: "right" }}>ADD TO CART</Button>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-      <h2 className="text-center">Merch</h2>
-      <Container className="w-50">
-        <Row className="justify-content-center my-5">
-          <Col>
-            <h3 className="text-center">T-Shirt</h3>
-            <img src={merch1} alt="merch-1" style={{ width: '80%', marginLeft: '10%' }} />
-            <div className="my-4">
-              <span>$19.99</span><Button style={{ float: "right" }}>ADD TO CART</Button>
-            </div>
-          </Col>
-          <Col>
-            <h3 className="text-center">Coffee Cup</h3>
-            <img src={merch2} alt="merch-2" style={{ width: '80%', height: '70%', marginLeft: '10%' }} />
-            <div className="my-4">
-              <span>$6.99</span><Button style={{ float: "right" }}>ADD TO CART</Button>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-      <Container className="text-center">
-        <Button variant="secondary">See the cart</Button>
-      </Container>
-      <Container fluid style={{ backgroundColor: "#56CCF2", color: 'white', padding: "1rem 2rem", marginTop: "1rem" }}>
-        <Row className="justify-content-center">
-          <Col className="text-center">
-            <h2 style={{ fontSize: "3rem" }}>The Generics</h2>
-          </Col>
-          <Col>
-            <ul style={{ display: 'flex', listStyle: "none", justifyContent: "space-evenly" }}>
-              <li><img src={ylogo} alt="youtube" style={{ width: "2rem" }} /></li>
-              <li><img src={slogo} alt="spotify" style={{ width: "2rem" }} /></li>
-              <li><img src={flogo} alt="facebook" style={{ width: "2rem" }} /></li>
-            </ul>
-          </Col>
-        </Row>
-      </Container>
-    </>
+      <Header onShowCart={showCart}/>
+      <Products products={productsArr} merch={merchArr}/>
+      <Footer/>
+    </ContextProvider>
   );
 }
 
