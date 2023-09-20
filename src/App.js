@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import { ContextProvider } from './stores/context';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import About from './components/About';
+import Home from './components/Home';
 
 
 const productsArr = [
@@ -53,19 +54,20 @@ const merchArr = [
   },
 ]
 
-const router = createBrowserRouter([
-  {path: '/', element: <Products products={productsArr} merch={merchArr}/>},
-  {path: '/about', element: <About/>}
-])
 
 function App() {
   const [cartIsShown,setCartIsShown] = useState(false);
   const showCart = () => setCartIsShown(!cartIsShown);
 
+  const router = createBrowserRouter([
+    {path: '/', element: <><Header onShowCart={showCart}/><Products products={productsArr} merch={merchArr}/></>},
+    {path: '/about', element: <><Header onShowCart={showCart}/><About/></>},
+    {path: '/home', element: <><Header onShowCart={showCart}/><Home/></>}
+  ])
+
   return (
     <ContextProvider>
     {cartIsShown && <Cart/>}
-      <Header onShowCart={showCart}/>
       {/* <Products products={productsArr} merch={merchArr}/> */}
       <RouterProvider router={router}/>
       <Footer/>
