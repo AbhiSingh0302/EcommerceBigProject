@@ -10,6 +10,7 @@ import { ContextProvider } from './stores/context';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
+import ContactUs from './components/ContactUs';
 
 
 const productsArr = [
@@ -62,7 +63,8 @@ function App() {
   const router = createBrowserRouter([
     {path: '/', element: <><Header onShowCart={showCart}/><Products products={productsArr} merch={merchArr}/></>},
     {path: '/about', element: <><Header onShowCart={showCart}/><About/></>},
-    {path: '/home', element: <><Header onShowCart={showCart}/><Home/></>}
+    {path: '/home', element: <><Header onShowCart={showCart}/><Home/></>},
+    {path: '/contactus', element: <><Header onShowCart={showCart}/><ContactUs/></>}
   ])
 
   return (

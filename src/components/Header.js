@@ -17,6 +17,7 @@ const Header = props => {
             <NavLink to="/home" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>Home</NavLink>
             <NavLink to="/" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>Store</NavLink>
             <NavLink to="/about" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>About</NavLink>
+            <NavLink to="/contactus" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>Contact Us</NavLink>
           </Nav>
           <Button variant="outline-info" style={{ position: 'absolute', right: '1rem' }} onClick={props.onShowCart}>cart - <span>{ctx.total}</span></Button>
         </Container>
