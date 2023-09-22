@@ -11,6 +11,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
 import ContactUs from './components/ContactUs';
+import ProductDetail from './components/ProductDetail';
 
 
 const productsArr = [
@@ -64,7 +65,8 @@ function App() {
     {path: '/', element: <><Header onShowCart={showCart}/><Products products={productsArr} merch={merchArr}/></>},
     {path: '/about', element: <><Header onShowCart={showCart}/><About/></>},
     {path: '/home', element: <><Header onShowCart={showCart}/><Home/></>},
-    {path: '/contactus', element: <><Header onShowCart={showCart}/><ContactUs/></>}
+    {path: '/contactus', element: <><Header onShowCart={showCart}/><ContactUs/></>},
+    {path: '/products/:productId', element: <><Header onShowCart={showCart}/><ProductDetail products={productsArr}/></>}
   ])
 
   return (
