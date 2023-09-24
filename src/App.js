@@ -1,10 +1,10 @@
 import merch1 from './assets/Shirt.png';
 import merch2 from './assets/Cofee.png';
 
-import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 
-// import { useState } from "react";
-// import Cart from "./Cart/Cart";
+import { useContext, useState } from "react";
+import Cart from "./Cart/Cart";
 import Products from "./components/Products";
 // import { ContextProvider } from './stores/context';
 // import { Route, RouterProvider, Routes, createBrowserRouter } from 'react-router-dom';
@@ -14,8 +14,7 @@ import ContactUs from './components/ContactUs';
 import ProductDetail from './components/ProductDetail';
 import Layout from './components/Layout';
 import Login from './components/Login';
-// import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
-
+import { authContext } from './stores/AuthContext';
 
 const productsArr = [
   {
@@ -61,8 +60,8 @@ const merchArr = [
 
 
 // // function App() {
-//   // const [cartIsShown,setCartIsShown] = useState(false);
-//   // const showCart = () => setCartIsShown(!cartIsShown);
+  // const [cartIsShown,setCartIsShown] = useState(false);
+  // const showCart = () => setCartIsShown(!cartIsShown);
 
 // //   const router = createBrowserRouter([
 // //     {path: '/', element: <><Header onShowCart={showCart}/><Products products={productsArr} merch={merchArr}/></>},
@@ -119,11 +118,19 @@ const merchArr = [
 
 
 function App(){
+  const [cartIsShown,setCartIsShown] = useState(false);
+  const showCart = () => setCartIsShown(!cartIsShown);
+
+  const authCtx = useContext(authContext);
+
   return (
-    <Layout>
+    <>
+      {cartIsShown && <Cart/>}
+    <Layout onShowCart={showCart}>
       <Switch>
         <Route path="/" exact>
-        <Products products={productsArr} merch={merchArr}/>
+        {authCtx.isLoggedIn && <Products products={productsArr} merch={merchArr}/>}
+        {!authCtx.isLoggedIn && <Redirect to="/login"/>}
         </Route>
         <Route path="/about">
         <About/>
@@ -142,6 +149,7 @@ function App(){
         </Route>
       </Switch>
     </Layout>
+    </>
   )
 }
 

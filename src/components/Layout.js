@@ -4,7 +4,7 @@ import Footer from "./Footer"
 
 const Layout = props => {
     return <Fragment>
-        <Header/>
+        <Header onShowCart={props.onShowCart}/>
         <main>{props.children}</main>
         <Footer/>
     </Fragment>
