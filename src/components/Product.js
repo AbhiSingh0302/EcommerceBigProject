@@ -9,6 +9,24 @@ const Product = props => {
 
     const onClickHandler = () => {
         console.log('h');
+
+        let email = localStorage.getItem("email");
+        const atIndex = email.indexOf("@");
+        email = email.slice(0, atIndex);
+        fetch(`https://crudcrud.com/api/a39c7b2f5034476f9b178050175a511e/${email}`, {
+            method: 'POST',
+            body: JSON.stringify({...props.item, quantity: 1}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        })
+
         ctx.addItem({...props.item, quantity: 1})
     }
 

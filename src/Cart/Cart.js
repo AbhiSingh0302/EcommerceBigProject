@@ -27,7 +27,7 @@ const cartElements = [
 const Cart = props => {
     const ctx = useContext(cartContext);
     console.log("ctx items: ",ctx.items)
-    const [items, setItems] = useState(cartElements);
+    const [items, setItems] = useState(ctx.items);
 
     const removeItem = e => {
         setItems(pre => pre.filter(item => item.title !== e.target.id))

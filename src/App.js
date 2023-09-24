@@ -3,7 +3,7 @@ import merch2 from './assets/Cofee.png';
 
 import { Redirect, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Cart from "./Cart/Cart";
 import Products from "./components/Products";
 // import { ContextProvider } from './stores/context';
@@ -15,6 +15,7 @@ import ProductDetail from './components/ProductDetail';
 import Layout from './components/Layout';
 import Login from './components/Login';
 import { authContext } from './stores/AuthContext';
+import { cartContext } from './stores/context';
 
 const productsArr = [
   {
@@ -122,6 +123,26 @@ function App(){
   const showCart = () => setCartIsShown(!cartIsShown);
 
   const authCtx = useContext(authContext);
+  const cartCtx = useContext(cartContext);
+
+  useEffect(() => {
+    if(localStorage.getItem("email")){
+        let email = localStorage.getItem("email");
+        const atIndex = email.indexOf("@");
+        email = email.slice(0, atIndex);
+        fetch(`https://crudcrud.com/api/a39c7b2f5034476f9b178050175a511e/${email}`).then((res) => {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            data.map(el => {
+              cartCtx.addItem(el);
+                return el;
+            })
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+},[])
 
   return (
     <>
