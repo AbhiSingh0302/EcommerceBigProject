@@ -1,17 +1,20 @@
 import merch1 from './assets/Shirt.png';
 import merch2 from './assets/Cofee.png';
 
-import { useState } from "react";
-import Cart from "./Cart/Cart";
-import Header from "./components/Header";
+import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+
+// import { useState } from "react";
+// import Cart from "./Cart/Cart";
 import Products from "./components/Products";
-import Footer from "./components/Footer";
-import { ContextProvider } from './stores/context';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+// import { ContextProvider } from './stores/context';
+// import { Route, RouterProvider, Routes, createBrowserRouter } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
 import ContactUs from './components/ContactUs';
 import ProductDetail from './components/ProductDetail';
+import Layout from './components/Layout';
+import Login from './components/Login';
+// import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const productsArr = [
@@ -57,26 +60,89 @@ const merchArr = [
 ]
 
 
-function App() {
-  const [cartIsShown,setCartIsShown] = useState(false);
-  const showCart = () => setCartIsShown(!cartIsShown);
+// // function App() {
+//   // const [cartIsShown,setCartIsShown] = useState(false);
+//   // const showCart = () => setCartIsShown(!cartIsShown);
 
-  const router = createBrowserRouter([
-    {path: '/', element: <><Header onShowCart={showCart}/><Products products={productsArr} merch={merchArr}/></>},
-    {path: '/about', element: <><Header onShowCart={showCart}/><About/></>},
-    {path: '/home', element: <><Header onShowCart={showCart}/><Home/></>},
-    {path: '/contactus', element: <><Header onShowCart={showCart}/><ContactUs/></>},
-    {path: '/products/:productId', element: <><Header onShowCart={showCart}/><ProductDetail products={productsArr}/></>}
-  ])
+// //   const router = createBrowserRouter([
+// //     {path: '/', element: <><Header onShowCart={showCart}/><Products products={productsArr} merch={merchArr}/></>},
+// //     {path: '/about', element: <><Header onShowCart={showCart}/><About/></>},
+// //     {path: '/home', element: <><Header onShowCart={showCart}/><Home/></>},
+// //     {path: '/contactus', element: <><Header onShowCart={showCart}/><ContactUs/></>},
+// //     {path: '/products/:productId', element: <><Header onShowCart={showCart}/><ProductDetail products={productsArr}/></>}
+// //   ])
 
+// //   // return (
+// //   //   <>
+// //   //     {cartIsShown && <Cart/>}
+// //   //     <Layout>
+// //   //     <RouterProvider router={router}/>
+// //   //     </Layout>
+// //   //   </>
+// //   //   // <ContextProvider>
+// //   //   //   {/* <Products products={productsArr} merch={merchArr}/> */}
+// //   //   //   <Footer/>
+// //   //   // </ContextProvider>
+// //   // );
+// //   return (
+// //     <Layout>
+// //       <Routes>
+//       // <Route path='/' Component={<Products products={productsArr} merch={merchArr}/>}/>
+//       // <Route path='/about' Component={<About/>}/>
+//       // <Route path='/home' Component={<Home/>}/>
+//       // <Route path='/contactus' Component={<ContactUs/>}/>
+//       // <Route path='/products/:productId' Component={<ProductDetail products={productsArr}/>}/>
+// //       </Routes>
+// //     </Layout>
+// //   )
+// // }
+
+// function App(){
+//   const [cartIsShown,setCartIsShown] = useState(false);
+//   const showCart = () => setCartIsShown(!cartIsShown);
+
+//   return (
+//     <Layout onShowCart={showCart}>
+//       {cartIsShown && <Cart/>}
+//       <Switch>
+//         <Route path=''></Route>
+//       </Switch>
+//       <Route path='/' Component={<Products products={productsArr} merch={merchArr}/>}/>
+//       <Route path='/about' Component={<About/>}/>
+//       <Route path='/home' Component={<Home/>}/>
+//       <Route path='/contactus' Component={<ContactUs/>}/>
+//       <Route path='/products/:productId' Component={<ProductDetail products={productsArr}/>}/>
+//     </Layout>
+//   )
+// }
+
+
+
+function App(){
   return (
-    <ContextProvider>
-    {cartIsShown && <Cart/>}
-      {/* <Products products={productsArr} merch={merchArr}/> */}
-      <RouterProvider router={router}/>
-      <Footer/>
-    </ContextProvider>
-  );
+    <Layout>
+      <Switch>
+        <Route path="/" exact>
+        <Products products={productsArr} merch={merchArr}/>
+        </Route>
+        <Route path="/about">
+        <About/>
+        </Route>
+        <Route path="/home">
+        <Home/>
+        </Route>
+        <Route path="/contactus">
+        <ContactUs/>
+        </Route>
+        <Route path="/products/:productId">
+        <ProductDetail products={productsArr}/>
+        </Route>
+        <Route path="/login">
+        <Login/>
+        </Route>
+      </Switch>
+    </Layout>
+  )
 }
 
 export default App;

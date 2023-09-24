@@ -1,0 +1,10 @@
+.link{
+   margin: 5px 1rem;
+   font-size: 1.5rem;
+   color: white;
+   text-decoration: none;
+}
+.active{
+    text-decoration: underline;
+    color: blue;
+}

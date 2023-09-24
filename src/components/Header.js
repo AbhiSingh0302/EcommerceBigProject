@@ -2,6 +2,7 @@ import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import { cartContext } from "../stores/context";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import classes from './Header.module.css';
 
 const Header = props => {
   const ctx = useContext(cartContext);
@@ -11,13 +12,11 @@ const Header = props => {
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container className="justify-content-center">
           <Nav>
-            {/* <Nav.Link href="#home" className="text-white">Home</Nav.Link>
-            <Nav.Link href="#features" className="text-white">Store</Nav.Link>
-            <Nav.Link href="#pricing" className="text-white">About</Nav.Link> */}
-            <NavLink to="/home" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>Home</NavLink>
-            <NavLink to="/" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>Store</NavLink>
-            <NavLink to="/about" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>About</NavLink>
-            <NavLink to="/contactus" style={({isActive}) => ({textDecoration: isActive ? "underline" : "none", color: isActive ? 'blue' : "white", margin: "5px 1rem", fontSize: "1.5rem"})} end>Contact Us</NavLink>
+            <NavLink className={classes.link} activeClassName={classes.active} to="/home">Home</NavLink>
+            <NavLink className={classes.link} activeClassName={classes.active} to="/" exact>Store</NavLink>
+            <NavLink className={classes.link} activeClassName={classes.active} to="/about">About</NavLink>
+            <NavLink className={classes.link} activeClassName={classes.active} to="/login">Login</NavLink>
+            <NavLink className={classes.link} activeClassName={classes.active} to="/contactus">Contact Us</NavLink>
           </Nav>
           <Button variant="outline-info" style={{ position: 'absolute', right: '1rem' }} onClick={props.onShowCart}>cart - <span>{ctx.total}</span></Button>
         </Container>
